@@ -5,7 +5,7 @@ export interface UserApiRepoStructure {
   login(user: ProtoUserStructure): Promise<{ results: { token: string } }>;
   loadUsers(token: string): Promise<{ results: UserStructure[] }>;
   updateUser(
-    id: UserStructure["id"],
+    // id: UserStructure["id"],
     token: string,
     userInfo: Partial<UserStructure>
   ): Promise<{ results: UserStructure[] }>;
@@ -93,11 +93,11 @@ export class UserApiRepo implements UserApiRepoStructure {
   }
 
   async updateUser(
-    id: UserStructure["id"],
+    // id: UserStructure["id"],
     token: string,
     userInfo: Partial<UserStructure>
   ): Promise<{ results: UserStructure[] }> {
-    const url = this.url + "/details/" + id;
+    const url = this.url + "/details/" + userInfo.id;
 
     const resp = await fetch(url, {
       method: "PATCH",

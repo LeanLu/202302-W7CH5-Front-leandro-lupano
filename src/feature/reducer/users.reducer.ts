@@ -1,6 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { UserStructure } from "../models/user";
-
 import * as ac from "./users.actions.creator";
 
 const initialState: UserStructure[] = [];
