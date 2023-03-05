@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { KnowledgeStructure } from "../models/knowledge";
-import * as ac from "./knowledges.actions.creator";
+import { UserStructure } from "../models/user";
 
-const initialState: KnowledgeStructure[] = [];
+import * as ac from "./users.actions.creator";
 
-export const knowledgeReducer = createReducer(initialState, (builder) => {
+const initialState: UserStructure[] = [];
+
+export const userReducer = createReducer(initialState, (builder) => {
   builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
 
   builder.addCase(ac.addCreator, (state, { payload }) => [...state, payload]);

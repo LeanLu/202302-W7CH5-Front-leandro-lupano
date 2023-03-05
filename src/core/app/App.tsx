@@ -1,9 +1,9 @@
-import { KnowledgesList } from "../../feature/components/knowledge.list/knowledge.list";
+import { UsersList } from "../../feature/components/user.list/user.list";
 
 function App() {
   return (
     <div className="App">
-      <KnowledgesList></KnowledgesList>
+      <UsersList></UsersList>
     </div>
   );
 }

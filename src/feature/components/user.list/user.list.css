@@ -1,4 +1,4 @@
-.knowledges-list {
+.users-list {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,7 +8,7 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.knowledges-list__items {
+.users-list__items {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
