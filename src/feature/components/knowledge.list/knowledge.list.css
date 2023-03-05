@@ -1,0 +1,16 @@
+.knowledges-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.knowledges-list__items {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2rem;
+}

@@ -1,0 +1,33 @@
+.knowledge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(128, 244, 157);
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.knowledge__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.knowledge__edit,
+.knowledge__delete {
+  background: none;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.knowledge__edit {
+  background-color: rgb(213, 245, 144);
+}
+
+.knowledge__delete {
+  background-color: rgba(255, 0, 0, 0.8);
+}
