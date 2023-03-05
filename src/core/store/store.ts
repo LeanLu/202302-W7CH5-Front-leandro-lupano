@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { knowledgeReducer } from "../../feature/reducer/knowledge.reducer";
+import { userReducer } from "../../feature/reducer/users.reducer";
 
 export const store = configureStore({
   reducer: {
-    knowledge: knowledgeReducer,
+    user: userReducer,
   },
 });
 

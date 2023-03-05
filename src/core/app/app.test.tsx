@@ -1,15 +1,15 @@
 import { render } from "@testing-library/react";
-import { KnowledgesList } from "../../feature/components/knowledge.list/knowledge.list";
+import { UsersList } from "../../feature/components/user.list/user.list";
 import App from "./App";
 
-jest.mock("../../feature/components/knowledge.list/knowledge.list");
+jest.mock("../../feature/components/user.list/user.list");
 
 describe("Given App component", () => {
   describe("When it is render", () => {
-    test("Then it should call KnowledgesList component", () => {
+    test("Then it should call UsersList component", () => {
       render(<App />);
 
-      expect(KnowledgesList).toHaveBeenCalled();
+      expect(UsersList).toHaveBeenCalled();
     });
   });
 });
