@@ -1,13 +1,13 @@
-type HasId = {
+export type UserStructure = {
   id: string;
-};
-
-export type ProtoUserStructure = {
   email: string;
   userName: string;
-  password: string;
-  friends?: ProtoUserStructure[];
-  enemies?: ProtoUserStructure[];
+  password?: string;
+  friends: UserStructure[];
+  enemies: UserStructure[];
+  token?: string;
 };
 
-export type UserStructure = HasId & ProtoUserStructure;
+export type ServerResp = {
+  results: UserStructure[];
+};

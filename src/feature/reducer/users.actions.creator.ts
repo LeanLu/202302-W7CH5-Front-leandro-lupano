@@ -2,9 +2,14 @@ import { createAction } from "@reduxjs/toolkit";
 import { UserStructure } from "../models/user";
 import { usersActions } from "./users.actions.type";
 
-export const loadCreator = createAction<UserStructure[]>(usersActions.load);
-export const addCreator = createAction<UserStructure>(usersActions.add);
-export const updateCreator = createAction<UserStructure>(usersActions.update);
-export const deleteCreator = createAction<UserStructure["id"]>(
-  usersActions.delete
+export const readAllCreator = createAction<UserStructure[]>(
+  usersActions.readAll
 );
+export const readOneCreator = createAction<UserStructure[]>(
+  usersActions.readOne
+);
+export const createCreator = createAction<UserStructure>(usersActions.create);
+export const updateCreator = createAction<Partial<UserStructure>>(
+  usersActions.update
+);
+export const logUserCreator = createAction<UserStructure>(usersActions.logUser);

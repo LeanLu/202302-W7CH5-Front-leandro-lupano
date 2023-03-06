@@ -1,6 +1,7 @@
 export const usersActions = {
-  load: "user@load",
-  add: "user@add",
+  readAll: "user@readAll",
+  readOne: "user@readOne",
+  create: "user@create",
   update: "user@update",
-  delete: "user@delete",
+  logUser: "user@logUser",
 };
