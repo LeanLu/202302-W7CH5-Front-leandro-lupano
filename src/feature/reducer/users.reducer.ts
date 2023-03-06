@@ -2,19 +2,39 @@ import { createReducer } from "@reduxjs/toolkit";
 import { UserStructure } from "../models/user";
 import * as ac from "./users.actions.creator";
 
-const initialState: UserStructure[] = [];
+export type State = {
+  userLogged: UserStructure;
+  users: UserStructure[];
+};
+
+const initialState: State = {
+  userLogged: {} as UserStructure,
+  users: [],
+};
 
 export const userReducer = createReducer(initialState, (builder) => {
-  builder.addCase(ac.loadCreator, (_state, { payload }) => payload);
-
-  builder.addCase(ac.addCreator, (state, { payload }) => [...state, payload]);
-
-  builder.addCase(ac.updateCreator, (state, { payload }) => {
-    state.map((item) => (item.id === payload.id ? payload : item));
+  builder.addCase(ac.readAllCreator, (state, { payload }) => {
+    return { ...state, users: payload };
   });
 
-  builder.addCase(ac.deleteCreator, (state, { payload }) => {
-    state.filter((item) => item.id !== payload);
+  builder.addCase(ac.readOneCreator, (state, { payload }) => {
+    return { ...state, users: payload };
+  });
+
+  builder.addCase(ac.createCreator, (state, { payload }) => {
+    return { ...state, users: [...state.users, payload] };
+  });
+
+  builder.addCase(ac.updateCreator, (state, { payload }) => {
+    const actualInfo = [...state.users];
+    const newInfo = actualInfo.map((item) =>
+      item.id === payload.id ? { ...item, ...payload } : item
+    );
+    return { ...state, users: newInfo };
+  });
+
+  builder.addCase(ac.logUserCreator, (state, { payload }) => {
+    return { ...state, loggedUser: payload };
   });
 
   builder.addDefaultCase((state) => state);
