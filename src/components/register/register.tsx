@@ -1,9 +1,9 @@
 import { SyntheticEvent, useMemo } from "react";
-import { useUsers } from "../hooks/use.users";
-import { UserStructure } from "../models/user";
-import { UsersRepo } from "../services/repository/user.api.repo";
+import { useUsers } from "../../hooks/use.users";
+import { UserStructure } from "../../models/user";
+import { UsersRepo } from "../../services/repository/user.api.repo";
 
-export function Register() {
+export default function Register() {
   const repo = useMemo(() => new UsersRepo(), []);
 
   const { createUser } = useUsers(repo);
@@ -19,6 +19,8 @@ export function Register() {
       password: (formNewUser[2] as HTMLInputElement).value,
     };
 
+    console.log(newUser);
+
     createUser(newUser);
 
     formNewUser.reset();
@@ -33,12 +35,12 @@ export function Register() {
 
       <label>
         Email
-        <input type="email" name="userName" required />
+        <input type="email" name="email" required />
       </label>
 
       <label>
         Password
-        <input type="password" name="userName" required />
+        <input type="password" name="password" required />
       </label>
 
       <button type="submit">Register</button>

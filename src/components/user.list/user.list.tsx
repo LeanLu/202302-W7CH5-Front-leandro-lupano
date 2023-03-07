@@ -1,6 +1,6 @@
 import "./user.list.css";
 
-export function UsersList() {
+export default function UsersList() {
   return (
     <section className="users-list">
       <div className="users-list__title">

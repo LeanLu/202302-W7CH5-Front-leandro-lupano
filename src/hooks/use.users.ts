@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../core/store/store";
+import { AppDispatch, RootState } from "../store/store";
 import { UsersRepo } from "../services/repository/user.api.repo";
 import * as ac from "../reducer/users.actions.creator";
 import { UserStructure } from "../models/user";
