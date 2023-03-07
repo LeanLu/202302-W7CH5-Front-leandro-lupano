@@ -13,6 +13,7 @@ export function useUsers(repo: UsersRepo) {
   useEffect(() => {
     const readAllUsers = async () => {
       try {
+        console.log(users.userLogged.token);
         if (!users.userLogged.token) throw new Error("Not authorized");
 
         const infoUsers = await repo.readAll(users.userLogged.token);
@@ -70,7 +71,7 @@ export function useUsers(repo: UsersRepo) {
   const loginUser = async (userInfo: Partial<UserStructure>) => {
     try {
       const infoUser = await repo.create(userInfo, "login");
-
+      console.log(infoUser);
       dispatch(ac.logUserCreator(infoUser.results[0]));
     } catch (error) {
       console.log((error as Error).message);

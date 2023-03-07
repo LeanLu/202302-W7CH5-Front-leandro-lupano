@@ -21,7 +21,7 @@ export function AppRouter({ menuOptions }: AppRouterProps) {
         ></Route>
         <Route path={menuOptions[1].path} element={<Login></Login>}></Route>
         <Route path={menuOptions[2].path} element={<Users></Users>}></Route>
-        <Route path={"*"} element={<Register></Register>}></Route>
+        <Route path={"*"} element={<Users></Users>}></Route>
       </Routes>
     </Suspense>
   );

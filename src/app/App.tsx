@@ -1,3 +1,4 @@
+import { AppRouter } from "../app.router/app.router";
 import { NavMenu } from "../components/nav.menu/nav.menu";
 
 export type MenuOption = {
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <NavMenu menuOptions={menuOptions}></NavMenu>
+      <AppRouter menuOptions={menuOptions}></AppRouter>
     </div>
   );
 }
