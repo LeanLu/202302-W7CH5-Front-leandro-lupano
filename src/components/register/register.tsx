@@ -2,27 +2,47 @@ import { SyntheticEvent, useMemo } from "react";
 import { useUsers } from "../../hooks/use.users";
 import { UserStructure } from "../../models/user";
 import { UsersRepo } from "../../services/repository/user.api.repo";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "../../services/firebase/firebase.config";
+import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+let pictureName: string = "picture.png";
+const storageRef = ref(storage, pictureName);
+let urlUserPicture: string = "";
 
 export default function Register() {
   const repo = useMemo(() => new UsersRepo(), []);
 
   const { createUser } = useUsers(repo);
 
-  const handleSubmit = (ev: SyntheticEvent) => {
+  const handleSubmit = async (ev: SyntheticEvent<HTMLFormElement>) => {
     ev.preventDefault();
+    const formNewUser = ev.currentTarget;
+    // NO se hace con document.querySelector
+    // const formNewUser = document.querySelector("form") as HTMLFormElement;
 
-    const formNewUser = document.querySelector("form") as HTMLFormElement;
+    const fileUserPicture = (formNewUser[3] as HTMLInputElement).files?.item(0);
+
+    if (fileUserPicture) {
+      pictureName = `${(formNewUser[0] as HTMLFormElement).value}.png`;
+      await uploadBytes(storageRef, fileUserPicture);
+
+      urlUserPicture = await getDownloadURL(storageRef);
+    }
 
     const newUser: Partial<UserStructure> = {
-      userName: (formNewUser[0] as HTMLInputElement).value,
-      email: (formNewUser[1] as HTMLInputElement).value,
-      password: (formNewUser[2] as HTMLInputElement).value,
+      userName: (formNewUser[0] as HTMLFormElement).value,
+      email: (formNewUser[1] as HTMLFormElement).value,
+      password: (formNewUser[2] as HTMLFormElement).value,
+      picture: urlUserPicture,
     };
-
-    console.log(newUser);
 
     createUser(newUser);
 
+    pictureName = "";
+    urlUserPicture = "";
     formNewUser.reset();
   };
 
@@ -41,6 +61,11 @@ export default function Register() {
       <label>
         Password
         <input type="password" name="password" required />
+      </label>
+
+      <label>
+        Picture
+        <input type="file" name="picture" />
       </label>
 
       <button type="submit">Register</button>

@@ -8,14 +8,16 @@ export default function Login() {
 
   const { loginUser } = useUsers(repo);
 
-  const handleSubmit = (ev: SyntheticEvent) => {
+  const handleSubmit = (ev: SyntheticEvent<HTMLFormElement>) => {
     ev.preventDefault();
 
-    const formLoginUser = document.querySelector("form") as HTMLFormElement;
+    const formLoginUser = ev.currentTarget;
+    // NO se hace con document.querySelector
+    // const formLoginUser = document.querySelector("form") as HTMLFormElement;
 
     const logUser: Partial<UserStructure> = {
-      userName: (formLoginUser[0] as HTMLInputElement).value,
-      password: (formLoginUser[1] as HTMLInputElement).value,
+      userName: (formLoginUser[0] as HTMLFormElement).value,
+      password: (formLoginUser[1] as HTMLFormElement).value,
     };
 
     console.log(logUser);

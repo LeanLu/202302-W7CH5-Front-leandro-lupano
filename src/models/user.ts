@@ -6,6 +6,7 @@ export type UserStructure = {
   friends: UserStructure[];
   enemies: UserStructure[];
   token?: string;
+  picture?: string;
 };
 
 export type ServerResp = {
