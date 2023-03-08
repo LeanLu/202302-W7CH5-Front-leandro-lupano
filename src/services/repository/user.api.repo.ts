@@ -10,7 +10,6 @@ export class UsersRepo implements Repo<ServerResp> {
 
   async readAll(token: string): Promise<ServerResp> {
     const resp = await fetch(this.url, {
-      method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },

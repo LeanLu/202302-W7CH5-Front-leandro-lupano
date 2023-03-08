@@ -34,7 +34,7 @@ export const userReducer = createReducer(initialState, (builder) => {
   });
 
   builder.addCase(ac.logUserCreator, (state, { payload }) => {
-    return { ...state, loggedUser: payload };
+    return { ...state, userLogged: payload };
   });
 
   builder.addDefaultCase((state) => state);

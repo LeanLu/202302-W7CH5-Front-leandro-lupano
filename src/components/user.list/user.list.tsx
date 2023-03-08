@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useUsers } from "../../hooks/use.users";
 import { UserStructure } from "../../models/user";
 import { UsersRepo } from "../../services/repository/user.api.repo";
@@ -8,7 +8,12 @@ import "./user.list.css";
 export default function UsersList() {
   const repo = useMemo(() => new UsersRepo(), []);
 
-  const { users } = useUsers(repo);
+  const { users, readAllUsers } = useUsers(repo);
+  useEffect(() => {
+    console.log(users.userLogged.token);
+    if (!users.userLogged.token) return;
+    readAllUsers(users.userLogged.token);
+  }, [readAllUsers, repo, users.userLogged.token]);
 
   return (
     <section className="users-list">

@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+// TEMPORAL:
+// import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
 import { UsersRepo } from "../services/repository/user.api.repo";
@@ -10,22 +11,35 @@ export function useUsers(repo: UsersRepo) {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    const readAllUsers = async () => {
-      try {
-        console.log(users.userLogged.token);
-        if (!users.userLogged.token) throw new Error("Not authorized");
+  // TEMPORAL:
+  // useEffect(() => {
+  //   const readAllUsers = async () => {
+  //     try {
+  //       console.log(users.userLogged.token);
+  //       if (!users.userLogged.token) throw new Error("Not authorized");
 
-        const infoUsers = await repo.readAll(users.userLogged.token);
+  //       const infoUsers = await repo.readAll(users.userLogged.token);
 
-        dispatch(ac.readAllCreator(infoUsers.results));
-      } catch (error) {
-        console.log((error as Error).message);
-      }
-    };
+  //       dispatch(ac.readAllCreator(infoUsers.results));
+  //     } catch (error) {
+  //       console.log((error as Error).message);
+  //     }
+  //   };
 
-    readAllUsers();
-  }, [dispatch, repo, users.userLogged.token]);
+  //   readAllUsers();
+  // }, [dispatch, repo, users.userLogged.token]);
+
+  const readAllUsers = async (token: string) => {
+    try {
+      if (!token) throw new Error("Not authorized");
+
+      const infoUsers = await repo.readAll(token);
+
+      dispatch(ac.readAllCreator(infoUsers.results));
+    } catch (error) {
+      console.log((error as Error).message);
+    }
+  };
 
   const readUser = async (id: string) => {
     try {
@@ -40,6 +54,7 @@ export function useUsers(repo: UsersRepo) {
   };
 
   const createUser = async (userInfo: Partial<UserStructure>) => {
+    debugger;
     try {
       const infoUser = await repo.create(userInfo, "register");
 
@@ -84,5 +99,6 @@ export function useUsers(repo: UsersRepo) {
     createUser,
     updateUser,
     loginUser,
+    readAllUsers,
   };
 }
