@@ -82,3 +82,7 @@ a {
   font-family: inherit;
   cursor: pointer;
 }
+
+img {
+  max-height: 100px;
+}

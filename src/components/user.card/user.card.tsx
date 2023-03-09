@@ -9,6 +9,7 @@ export function UserCard({ user }: UserCardProps) {
     <li>
       <p>{user.userName}</p>
       <p>{user.email}</p>
+      <img src={user.picture} alt={user.userName} />
     </li>
   );
 }

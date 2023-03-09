@@ -9,7 +9,6 @@ import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 let pictureName: string = "picture.png";
-const storageRef = ref(storage, pictureName);
 let urlUserPicture: string = "";
 
 export default function Register() {
@@ -27,9 +26,14 @@ export default function Register() {
 
     if (fileUserPicture) {
       pictureName = `${(formNewUser[0] as HTMLFormElement).value}.png`;
+
+      const storageRef = ref(storage, pictureName);
+
       await uploadBytes(storageRef, fileUserPicture);
 
       urlUserPicture = await getDownloadURL(storageRef);
+
+      pictureName = "";
     }
 
     const newUser: Partial<UserStructure> = {
@@ -41,7 +45,6 @@ export default function Register() {
 
     createUser(newUser);
 
-    pictureName = "";
     urlUserPicture = "";
     formNewUser.reset();
   };
